@@ -1,0 +1,42 @@
+import re
+from random import randint
+def getwords(str,words,values):
+    pattern = "[a-zA-Z]+"
+    words.append(re.findall(pattern,str))
+    values.append(re.findall("[\u4E00-\u9FA5]+",str))
+filename = '单词.txt'
+with open(filename,encoding='utf-8') as file:
+    lines = file.readlines()
+string = ""
+word1 = []
+words = []
+values = []
+for line in lines:
+    string += line
+    getwords(line,word1,values)
+words = re.findall("[a-zA-Z]+",string)
+dic ={}
+for i in range(len(words)):
+    dic[words[i]] = values[i]
+print("如果你要推出,请输入: 0")
+list = []
+while True:
+     word = 0
+     k = randint(0,len(words))
+     if k not in list:
+        list.append(k)
+     else:
+         continue
+     print(f"{words[k]},请输入这个单词的意思: ")
+     mean = input()
+     if mean == '0':
+         break
+     for i in range(len(dic[words[k]])):
+         if dic[words[k]][i] in mean:
+             print("恭喜你回答正确")
+             word = 1
+             break
+     if word == 1:
+        continue
+     print("你回答错误,请继续加油")
+     print(f"看看这个正确答案{dic[words[k]]}")

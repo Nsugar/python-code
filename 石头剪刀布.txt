@@ -1,0 +1,20 @@
+import random
+print("你现在有20个金币,进行一次游戏,如果你赢了你将会获得10金币.如果你输了,将数去10金币,如果不输不赢,则不会失去金币")
+games = {'石头':1,'剪刀':2,'布':3,1:'石头',2:'剪刀',3:'布'}
+coin = 20
+while coin > 0:
+    print("请输入石头剪刀布,若是不想玩了请输入0")
+    change = input()
+    if change == '0':
+        break;
+    player = games[change]
+    computer = random.randint(1, 3)
+    if (player == 1 and computer == 2) or (player == 2 and computer ==3) or (player==3 and computer==1):
+        print(f"系统出的是{games[computer]} 您出的是{games[player]} 您赢了")
+        coin += 10
+    elif (player == 2 and computer == 1) or (player == 3 and computer ==2) or (player==1 and computer==3):
+        print(f"系统出的是{games[computer]} 您出的是{games[player]} 您输了")
+        coin -= 10
+    else:
+        print(f"系统出的是{games[computer]} 您出的是{games[player]} 平局")
+    print(f"你现在有{coin}金币")
